@@ -3,10 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 // import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {GlobalStyle} from "./styles/GlobalStyle";
 
 import {
   About,
@@ -33,25 +31,30 @@ const router = createBrowserRouter([
   },
   {
     path: "/contact",
-    element: <Contact />, 
+    element: <Contact />,
   },
   {
     path: "/products",
     element: <Products />,
   },
   {
-    path: "/singleproduct/:id",    //This page will only load when we provide id in url
+    path: "/singleproduct/:id", //This page will only load when we provide id in url
     element: <SingleProduct />,
-  }, 
+  },
   {
-    path: "*",                    //Except above all pages if go with another path, Then this will render
+    path: "*", //Except above all pages if user write another path, Then this page will render.
     element: <ErrorPage />,
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={router} />);
+root.render(
+  <>
+   <GlobalStyle />   {/* Wrapping my application with the GlobalStyle.*/}
+    <RouterProvider router={router} />
+  </>
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
