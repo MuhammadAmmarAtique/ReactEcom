@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-
 const MainHeader = styled.header`
   padding: 0 4.8rem;
   height: 10rem;
@@ -20,13 +19,11 @@ function Header() {
   return (
     <MainHeader>
       <NavLink to="/">
-        <img src="./images/logo.png" alt="Main logo" className="logo" />  
+        <img src="./images/logo.png" alt="Main logo" className="logo" />
       </NavLink>
     </MainHeader>
 
-    //  if we make  "images" folder inside "public" folder we can access that images anywhere in src folder.  
-
-
+    //  if we make  "images" folder inside "public" folder we can access that images anywhere in src folder.
   );
 }
 

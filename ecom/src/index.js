@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
-import Header from "./components/Header";
 
 import {
   About,
@@ -45,38 +44,39 @@ const theme = {
 
 const router = createBrowserRouter([
   {
-        path: "/",
-        element: <App />,
-        children:[
-  {
-    path: "",
-    element: <Home />,
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
+      },
+      {
+        path: "/singleproduct/:id", //This page will only load when we provide id in url
+        element: <SingleProduct />,
+      },
+      {
+        path: "*", //Except above all pages if user write another path, Then this page will render.
+        element: <ErrorPage />,
+      },
+    ],
   },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/cart",
-    element: <Cart />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    path: "/products",
-    element: <Products />,
-  },
-  {
-    path: "/singleproduct/:id", //This page will only load when we provide id in url
-    element: <SingleProduct />,
-  },
-  {
-    path: "*", //Except above all pages if user write another path, Then this page will render.
-    element: <ErrorPage />,
-  },
-]}
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -84,7 +84,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider theme={theme}>
     <GlobalStyle /> {/* Wrapping my application with the GlobalStyle.*/}
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </ThemeProvider>
 );
 
