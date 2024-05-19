@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+const Para = styled.p`
+  color: ${({ theme }) => theme.colors.black};
+`;
+
 function Home() {
-
-  const Para = styled.p`
-    color:  ${({ theme }) => theme.colors.black};
-   
-   
-  `;
-
   return (
     <>
       <Para> Home </Para>

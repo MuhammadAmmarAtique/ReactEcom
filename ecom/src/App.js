@@ -1,7 +1,15 @@
+// This file will serve as a Layout
 import React from "react";
+import Header from "./components/Header";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
-  return <div>Welcome to My under development Ecommerce Application</div>;
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
 };
 
 export default App;
