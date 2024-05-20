@@ -120,7 +120,7 @@ const Nav = styled.nav`
       opacity: 0;
       transform: translateX(100%);
       /* transform-origin: top; */
-      transition: all 3s linear;
+      transition: all 0.7s linear;
     }
 
     .active .navbar-lists {
@@ -129,7 +129,7 @@ const Nav = styled.nav`
       transform: translateX(0);
       z-index: 999;
       transform-origin: right;
-      transition: all 3s linear;
+      transition: all 0.7s linear;
 
       .navbar-link {
         font-size: 4.2rem;

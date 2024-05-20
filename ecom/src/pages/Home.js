@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Para = styled.p`
   color: ${({ theme }) => theme.colors.black};
+  height: 100vh; 
 `;
 
 function Home() {
