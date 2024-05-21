@@ -68,7 +68,7 @@ const Wrapper = styled.section`
   }
 `;
 
-const HeroSection = ({ heading }) => {
+const HeroSection = ({ heading, text }) => {
   return (
     <Wrapper>
       <div className="container">
@@ -77,9 +77,7 @@ const HeroSection = ({ heading }) => {
             <p className="intro-data">Welcome to </p>
             <h1>{heading} </h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-              atque temporibus veniam doloribus libero ad error omnis voluptates
-              animi! Suscipit sapiente.
+            {text}
             </p>
             <NavLink>
               <Button>show now</Button>
