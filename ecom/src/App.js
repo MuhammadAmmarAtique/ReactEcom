@@ -1,6 +1,7 @@
 // This file will serve as a Layout
 import React from "react";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import { Outlet } from "react-router-dom";
 
 const App = () => {
@@ -8,6 +9,8 @@ const App = () => {
     <>
       <Header />
       <Outlet />
+      <Footer />
+
     </>
   );
 };
