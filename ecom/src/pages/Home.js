@@ -1,15 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-
-const Para = styled.p`
-  color: ${({ theme }) => theme.colors.black};
-  height: 100vh; 
-`;
+import HeroSection from "../components/HeroSection";
 
 function Home() {
   return (
     <>
-      <Para> Home </Para>
+      <HeroSection heading="Ammar Store" />
     </>
   );
 }

@@ -1,7 +1,12 @@
+import React from "react";
+import HeroSection from "../components/HeroSection";
+
 function About() {
-  return <>
-  <p> Aboutasdfasdf </p>
-  </>;
+  return (
+    <>
+      <HeroSection heading="About section" />
+    </>
+  );
 }
 
 export default About;
