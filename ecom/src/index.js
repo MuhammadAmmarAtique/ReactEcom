@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 // import "./index.css";  // Currently Also commented app.css file
-import App from "./App";
+import Layout from "./Layout";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { GlobalStyle } from "./styles/GlobalStyle";
@@ -45,7 +45,7 @@ const theme = {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Layout />,
     children: [
       {
         path: "",
