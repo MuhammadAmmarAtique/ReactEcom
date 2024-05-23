@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 
+import { ProductContextProvider } from "./context/Productscontext";
+
 import {
   About,
   Cart,
@@ -78,10 +80,12 @@ function App() {
   ]);
 
   return (
+    <ProductContextProvider>
     <ThemeProvider theme={theme}>
       <GlobalStyle /> {/* Wrapping my application with the GlobalStyle.*/}
       <RouterProvider router={router} />
     </ThemeProvider>
+    </ProductContextProvider>
   );
 }
 
