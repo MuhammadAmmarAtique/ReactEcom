@@ -17,12 +17,17 @@ const initialState = {
 export const ProductContextProvider = ({ children }) => {
   
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log("state: ", state);
+
 
   const getdata = async () => {
     dispatch({ type: "LOADING" });
     try {
+      // const response = await axios.get(
+      //   "https://api.pujakaitem.com/api/products"
+      // );
       const response = await axios.get(
-        "https://api.pujakaitem.com/api/products"
+        "https://fakestoreapi.com/products?limit=13"
       );
       const products = await response.data;
       dispatch({ type: "MY_API_DATA(PRODUCTS)", payload: products });

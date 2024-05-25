@@ -33,7 +33,8 @@ function ProductReducer(state, action) {
       const AllProducts = action.payload;
       state.featuredProducts = []; // Initialize as empty array
       AllProducts.map((elem) => {
-        if (elem.featured === true) {
+        // if (elem.featured === true) {
+          if (elem.id <= 3) {
           state.featuredProducts.push(elem);
         }
       });
