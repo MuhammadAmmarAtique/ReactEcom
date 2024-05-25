@@ -1,6 +1,6 @@
 import { useProductContext } from "../context/Productscontext";
 import styled from "styled-components";
-import Product from "./Product"
+import Product from "./Product";
 
 const Wrapper = styled.section`
   padding: 9rem 0;
@@ -105,10 +105,12 @@ const Wrapper = styled.section`
 const FeaturedProducts = () => {
   const { isLoading, featuredProducts } = useProductContext();
 
-  if (isLoading) {
+  // If data still coming i.e isLoading == true and featuredProducts is empty, show loading indicator.
+  if (isLoading && !featuredProducts.length) {
     return <div> ......Loading </div>;
   }
 
+  // Once data is available, render the products
   return (
     <Wrapper className="section">
       <div className="container">
@@ -123,7 +125,5 @@ const FeaturedProducts = () => {
     </Wrapper>
   );
 };
-
-
 
 export default FeaturedProducts;
