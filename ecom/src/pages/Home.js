@@ -2,6 +2,7 @@ import React from "react";
 import HeroSection from "../components/HeroSection";
 import Services from "../components/Services";
 import Trusted from "../components/Trusted";
+import FeaturedProducts from "../components/FeaturedProducts";
 
 function Home() {
   const text =
@@ -10,6 +11,7 @@ function Home() {
   return (
     <>
       <HeroSection heading="Ammar Ecommmerce" text={text} />
+      <FeaturedProducts/>
       <Services />
       <Trusted />
     </>

@@ -5,6 +5,8 @@ import reducer from "../reducers/ProductReducer";
 
 export const ProductContext = createContext();
 
+// Inside our Home page's featured product section, we will show loading before data comes, if any error comes we will show 
+// error there, if data of products comes successfully we will extract featured products from data and show it there.
 const initialState = {
   isLoading: false,
   isError: false,
@@ -26,6 +28,7 @@ export const ProductContextProvider = ({ children }) => {
       dispatch({ type: "MY_API_DATA(PRODUCTS)", payload: products });
     } catch (error) {
       dispatch({ type: "ERROR_IN_GETTING_API_DATA" });
+      console.log("ERROR_IN_GETTING_API_DATA (productscontext.js) ::",error);
     }
   };
 
