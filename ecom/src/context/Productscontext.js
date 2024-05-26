@@ -10,14 +10,20 @@ export const ProductContext = createContext();
 const initialState = {
   isLoading: false,
   isError: false,
-  products: [],
+  products: [], //Products come in form of array of object
   featuredProducts: [],
+
+  //States for single product:-
+  isSingleProductLoading: false,
+  isSingleProductError: false,
+  SingleProduct: {}, //single product is an object
 };
 
 export const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const getdata = async () => {
+  //1st api call for All Products
+  const getProductsData = async () => {
     dispatch({ type: "LOADING" });
     try {
       // const response = await axios.get(
@@ -34,16 +40,33 @@ export const ProductContextProvider = ({ children }) => {
     }
   };
 
+  //2nd api call for Single Product page
+  const getSingleProductData = async (url) => {
+    dispatch({ type: "LOADING_FOR_GETTING_SINGLE_PRODUCT_DATA" });
+    try {
+      const singleProductData = await axios.get(url);
+      dispatch({
+        type: "MY_API_DATA_FOR_SINGLE_PRODUCT",
+        payload: singleProductData,
+      });
+    } catch (error) {
+      dispatch({ type: "ERROR_IN_GETTING__API_DATA_FOR_SINGLE_PRODUCT" });
+      console.log(
+        "ERROR_IN_GETTING_API_DATA_FOR_SINGLE_PRODUCT (productscontext.js) ::",
+        error
+      );
+    }
+  };
+
   useEffect(() => {
-    getdata();
+    getProductsData();
   }, []);
 
   return (
-    <>
-      <ProductContext.Provider value={{ ...state }}>
-        {children}
-      </ProductContext.Provider>
-    </>
+    //  getSingleProductData method will be called when we click on any single product
+    <ProductContext.Provider value={{ ...state, getSingleProductData }}>
+      {children}
+    </ProductContext.Provider>
   );
 };
 
