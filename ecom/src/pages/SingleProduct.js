@@ -1,7 +1,30 @@
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import { useProductContext } from "../context/Productscontext";
+import { useEffect } from "react";
 
 function SingleProduct() {
-  return <Wrapper></Wrapper>;
+  const { id } = useParams();
+
+  const { getSingleProductData, isSingleProductLoading, SingleProduct } =useProductContext();
+
+
+  const {
+    id: alias, // renaming product id as alias.
+    title,
+    price,
+    description,
+    category,
+    image,
+    rating: { rate, count } //nested destructuring
+  } = SingleProduct.data;   //destructuring singleproduct object
+  
+  console.log("title: ", title);
+  useEffect(() => {
+    getSingleProductData(`https://fakestoreapi.com/products/${id}`);
+  }, [id]);
+
+  return <Wrapper> <h1>{title}, {rate}</h1> </Wrapper>;
 }
 
 const Wrapper = styled.section`
