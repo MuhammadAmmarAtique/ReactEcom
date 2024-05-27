@@ -105,8 +105,8 @@ const Wrapper = styled.section`
 const FeaturedProducts = () => {
   const { isLoading, featuredProducts } = useProductContext();
 
-  // If data still coming i.e isLoading == true and featuredProducts is empty, show loading indicator.
-  if (isLoading && !featuredProducts.length) {
+  // If data still coming i.e isLoading == true or featuredProducts is empty, show loading indicator.
+  if (isLoading || !featuredProducts.length) {
     return <div> ......Loading </div>;
   }
 

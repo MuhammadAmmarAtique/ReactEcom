@@ -2,12 +2,28 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useProductContext } from "../context/Productscontext";
 import { useEffect } from "react";
+import { MdSecurity } from "react-icons/md";
+import { TbTruckDelivery, TbReplace } from "react-icons/tb";
+import PageNavigation from "../components/PageNavigation"
+import {Container} from "../styles/Container"
+import FormatPrice from "../helpers/FormatPrice"
+
 
 function SingleProduct() {
   const { id } = useParams();
 
   const { getSingleProductData, isSingleProductLoading, SingleProduct } =useProductContext();
+  
 
+
+  useEffect(() => {
+    getSingleProductData(`https://fakestoreapi.com/products/${id}`);
+  }, [id]);
+
+   // Check if the data is still loading or if it's not yet available
+  if (isSingleProductLoading || !SingleProduct.data) {
+    return(<div className="page_loading">...Loading</div>)
+  }
 
   const {
     id: alias, // renaming product id as alias.
@@ -17,15 +33,77 @@ function SingleProduct() {
     category,
     image,
     rating: { rate, count } //nested destructuring
-  } = SingleProduct.data;   //destructuring singleproduct object
-  
-  console.log("title: ", title);
-  useEffect(() => {
-    getSingleProductData(`https://fakestoreapi.com/products/${id}`);
-  }, [id]);
+  } =  SingleProduct.data;   //destructuring singleproduct object
+ 
 
-  return <Wrapper> <h1>{title}, {rate}</h1> </Wrapper>;
-}
+
+  return (
+    <Wrapper>
+      <PageNavigation title={title} />
+      <Container className="container">
+        <div className="grid grid-two-column">
+          {/* product Images  */}
+          <div className="product_images">
+            <img src={image} alt="product image"></img>
+          </div>
+
+          {/* product dAta  */}
+          <div className="product-data">
+            <h2>{title}</h2>
+            {/* <p>{stars}</p> */}
+            {/* <p>{reviews} reviews</p> */}
+            <p className="product-data-price">
+              MRP:
+              <del>
+                <FormatPrice price={price + 250000} />
+              </del>
+            </p>
+            <p className="product-data-price product-data-real-price">
+              Deal of the Day: <FormatPrice price={price} />
+            </p>
+            <p>{description}</p>
+            <div className="product-data-warranty">
+              <div className="product-warranty-data">
+                <TbTruckDelivery className="warranty-icon" />
+                <p>Free Delivery</p>
+              </div>
+
+              <div className="product-warranty-data">
+                <TbReplace className="warranty-icon" />
+                <p>30 Days Replacement</p>
+              </div>
+
+              <div className="product-warranty-data">
+                <TbTruckDelivery className="warranty-icon" />
+                <p>Thapa Delivered </p>
+              </div>
+
+              <div className="product-warranty-data">
+                <MdSecurity className="warranty-icon" />
+                <p>2 Year Warranty </p>
+              </div>
+            </div>
+
+            <div className="product-data-info">
+            <p>
+                ID : <span> {alias} </span>
+              </p>
+              <p>
+                Rating:
+                <span> {rate}</span>
+              </p>     
+              <p>
+                Category :<span> {category} </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Wrapper>
+  );
+};
+
+export default SingleProduct;
 
 const Wrapper = styled.section`
   .container {
@@ -99,5 +177,3 @@ const Wrapper = styled.section`
     padding: 0 2.4rem;
   }
 `;
-
-export default SingleProduct;
