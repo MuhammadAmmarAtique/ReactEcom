@@ -4,25 +4,22 @@ import { useProductContext } from "../context/Productscontext";
 import { useEffect } from "react";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
-import PageNavigation from "../components/PageNavigation"
-import {Container} from "../styles/Container"
-import FormatPrice from "../helpers/FormatPrice"
+import PageNavigation from "../components/PageNavigation";
+import { Container } from "../styles/Container";
+import FormatPrice from "../helpers/FormatPrice";
 
-
-function SingleProduct() {
+function SingleProduct() { 
   const { id } = useParams();
 
-  const { getSingleProductData, isSingleProductLoading, SingleProduct } =useProductContext();
-  
-
+  const { getSingleProductData, isSingleProductLoading, SingleProduct } = useProductContext();
 
   useEffect(() => {
     getSingleProductData(`https://fakestoreapi.com/products/${id}`);
   }, [id]);
 
-   // Check if the data is still loading or if it's not yet available
+  // Check if the data is still loading or if it's not yet available
   if (isSingleProductLoading || !SingleProduct.data) {
-    return(<div className="page_loading">...Loading</div>)
+    return <div className="page_loading">...Loading</div>;
   }
 
   const {
@@ -32,10 +29,8 @@ function SingleProduct() {
     description,
     category,
     image,
-    rating: { rate, count } //nested destructuring
-  } =  SingleProduct.data;   //destructuring singleproduct object
- 
-
+    rating: { rate, count }, //nested destructuring
+  } = SingleProduct.data; //destructuring singleproduct object
 
   return (
     <Wrapper>
@@ -44,7 +39,7 @@ function SingleProduct() {
         <div className="grid grid-two-column">
           {/* product Images  */}
           <div className="product_images">
-            <img src={image} alt="product image"></img>
+            <img src={image} alt="product image" height="300px" width="300px"></img>
           </div>
 
           {/* product dAta  */}
@@ -85,13 +80,13 @@ function SingleProduct() {
             </div>
 
             <div className="product-data-info">
-            <p>
+              <p>
                 ID : <span> {alias} </span>
               </p>
               <p>
                 Rating:
                 <span> {rate}</span>
-              </p>     
+              </p>
               <p>
                 Category :<span> {category} </span>
               </p>
@@ -101,7 +96,7 @@ function SingleProduct() {
       </Container>
     </Wrapper>
   );
-};
+}
 
 export default SingleProduct;
 
@@ -140,6 +135,7 @@ const Wrapper = styled.section`
         }
       }
     }
+  
 
     .product-data-price {
       font-weight: bold;
@@ -167,7 +163,7 @@ const Wrapper = styled.section`
     }
   }
 
-  .product-images {
+  .product_images {
     display: flex;
     justify-content: center;
     align-items: center;
