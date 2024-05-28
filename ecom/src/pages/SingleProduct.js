@@ -6,16 +6,18 @@ import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import PageNavigation from "../components/PageNavigation";
 import { Container } from "../styles/Container";
+import MyImage from "../components/MyImage"
 import FormatPrice from "../helpers/FormatPrice";
+import Star from "../components/Star"
 
-function SingleProduct() { 
+function SingleProduct() {
   const { id } = useParams();
 
   const { getSingleProductData, isSingleProductLoading, SingleProduct } = useProductContext();
 
   useEffect(() => {
     getSingleProductData(`https://fakestoreapi.com/products/${id}`);
-  }, [id]);
+}, [id]);
 
   // Check if the data is still loading or if it's not yet available
   if (isSingleProductLoading || !SingleProduct.data) {
@@ -29,7 +31,7 @@ function SingleProduct() {
     description,
     category,
     image,
-    rating: { rate, count }, //nested destructuring
+    rating: { rate, count }, //nested destructuring (where rate is rating and count is a number of reviews)
   } = SingleProduct.data; //destructuring singleproduct object
 
   return (
@@ -39,14 +41,19 @@ function SingleProduct() {
         <div className="grid grid-two-column">
           {/* product Images  */}
           <div className="product_images">
-            <img src={image} alt="product image" height="300px" width="300px"></img>
+          {/* <MyImage imgs={image} /> */}
+            <img
+              src={image}
+              alt="product image"
+              height="300px"
+              width="300px"
+            ></img>
           </div>
 
           {/* product dAta  */}
           <div className="product-data">
             <h2>{title}</h2>
-            {/* <p>{stars}</p> */}
-            {/* <p>{reviews} reviews</p> */}
+            <Star rating={rate} reviews={count} />
             <p className="product-data-price">
               MRP:
               <del>
@@ -70,7 +77,7 @@ function SingleProduct() {
 
               <div className="product-warranty-data">
                 <TbTruckDelivery className="warranty-icon" />
-                <p>Thapa Delivered </p>
+                <p>Product Delivered </p>
               </div>
 
               <div className="product-warranty-data">
@@ -135,7 +142,6 @@ const Wrapper = styled.section`
         }
       }
     }
-  
 
     .product-data-price {
       font-weight: bold;
