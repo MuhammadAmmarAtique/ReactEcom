@@ -6,9 +6,10 @@ import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import PageNavigation from "../components/PageNavigation";
 import { Container } from "../styles/Container";
-import MyImage from "../components/MyImage"
+// import MyImage from "../components/MyImage" //use it if data of images from api is coming as array of objects (like in one array there are 3 images as an object)
 import FormatPrice from "../helpers/FormatPrice";
 import Star from "../components/Star"
+import AddToCart from "../components/AddToCart";
 
 function SingleProduct() {
   const { id } = useParams();
@@ -98,6 +99,8 @@ function SingleProduct() {
                 Category :<span> {category} </span>
               </p>
             </div>
+            <hr />
+            <AddToCart product={SingleProduct}/>
           </div>
         </div>
       </Container>
