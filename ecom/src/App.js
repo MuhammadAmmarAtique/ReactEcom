@@ -4,7 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 
-import { ProductContextProvider } from "./context/Productscontext";
+import { ProductContextProvider } from "./context/ProductsContext";
+import { FilterContextProvider } from "./context/FilterContext";
 
 import {
   About,
@@ -80,11 +81,15 @@ function App() {
   ]);
 
   return (
+    // wrapping filtercontext inside product context so that we can get products data inside filtercontext from productcontext.
+
     <ProductContextProvider>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle /> {/* Wrapping my application with the GlobalStyle.*/}
-      <RouterProvider router={router} />
-    </ThemeProvider>
+      <FilterContextProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle /> {/* Wrapping my application with the GlobalStyle.*/}
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </FilterContextProvider>
     </ProductContextProvider>
   );
 }
