@@ -9,8 +9,8 @@ const FilterReducer = (state, action) => {
     case "LOAD_DATA_IN_FILTER_PRODUCTS":
       return {
         ...state,
-        filterProducts: [... action.payload],
-        allProducts: [... action.payload],
+        filterProducts: [...action.payload],
+        allProducts: [...action.payload],
       };
 
     default:
