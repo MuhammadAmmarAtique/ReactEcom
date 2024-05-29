@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { useProductContext } from "../context/Productscontext";
+import { useProductContext } from "../context/ProductsContext";
 import { useEffect } from "react";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";

@@ -1,4 +1,4 @@
-import { useProductContext } from "../context/Productscontext";
+import { useProductContext } from "../context/ProductsContext";
 import styled from "styled-components";
 import Product from "./Product";
 
