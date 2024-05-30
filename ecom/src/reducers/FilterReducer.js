@@ -3,10 +3,10 @@ const FilterReducer = (state, action) => {
     case "LOADING":
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
 
-    case "LOAD_DATA_IN_FILTER_PRODUCTS":
+    case "LOAD_PRODUCTS_DATA_IN_FILTER_CONTEXT_FROM_PRODUCT_CONTEXT":
       return {
         ...state,
         filterProducts: [...action.payload],

@@ -5,7 +5,7 @@ import reducer from "../reducers/FilterReducer";
 const FilterContext = createContext();
 
 const initialState = {
-  isLoading: false,  
+  isLoading: false,
   filterProducts: [],
   allProducts: [],
 };
@@ -17,7 +17,10 @@ export const FilterContextProvider = ({ children }) => {
   useEffect(() => {
     dispatch({ type: "LOADING" });
     if (products && products.length > 0) {
-      dispatch({ type: "LOAD_DATA_IN_FILTER_PRODUCTS", payload: products });
+      dispatch({
+        type: "LOAD_PRODUCTS_DATA_IN_FILTER_CONTEXT_FROM_PRODUCT_CONTEXT",
+        payload: products,
+      });
     }
   }, [products]);
 

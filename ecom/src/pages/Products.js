@@ -7,9 +7,10 @@ import { useFilterContext } from "../context/FilterContext";
 const Products = () => {
 
   const {isLoading, allProducts, filterProducts} = useFilterContext()
-  console.log("isLoading: ", isLoading);
-  console.log("filterProducts: ", filterProducts);
-  console.log("allProducts: ", allProducts);
+
+  // if (isLoading || !filterProducts.length) {
+  //   return <div>...Loading </div>
+  // }
 
   return (
     <Wrapper>
