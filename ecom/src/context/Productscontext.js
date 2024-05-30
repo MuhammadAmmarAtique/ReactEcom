@@ -30,7 +30,7 @@ export const ProductContextProvider = ({ children }) => {
       //   "https://api.pujakaitem.com/api/products"
       // );
       const response = await axios.get(
-        "https://fakestoreapi.com/products?limit=10"
+        "https://fakestoreapi.com/products?limit=12"
       );
       const products = await response.data;
       dispatch({ type: "MY_API_DATA(PRODUCTS)", payload: products });

@@ -15,14 +15,18 @@ const Products = () => {
   return (
     <Wrapper>
       <div className="container grid grid-filter-column">
+        {/* left side */}
         <div>
           <FilterSection />
         </div>
 
+        {/* right side */}
         <section className="product-view--sort">
+          {/* a)RS-top */}
           <div className="sort-filter">
             <Sort />
           </div>
+          {/* a)RS-bottom */}
           <div className="main-product">
             <ProductList />
           </div>

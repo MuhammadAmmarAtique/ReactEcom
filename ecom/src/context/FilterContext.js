@@ -8,6 +8,8 @@ const initialState = {
   isLoading: false,
   filterProducts: [],
   allProducts: [],
+  // We will toggle this & based on it we will show products in 2 ways in main products page i.e gridview and listview 
+  grid_view: true
 };
 
 export const FilterContextProvider = ({ children }) => {
