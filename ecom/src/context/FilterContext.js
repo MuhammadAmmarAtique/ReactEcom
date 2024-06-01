@@ -6,17 +6,16 @@ const FilterContext = createContext();
 
 const initialState = {
   isLoading: false,
-  filterProducts: [],
   allProducts: [],
+  filterProducts: [],
   // We will toggle this & based on it we will show products in 2 ways in main products page i.e gridview and listview
   grid_view: true,
-  sortingValue: "lowest",
+  sortingValue: "lowest",//by seeing this we are filtering Products based on price and title characters (a to z or z to a)
 };
 
 export const FilterContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("state: ", state);
-  const { products } = useProductContext();
+  const { products } = useProductContext();  //products are coming in form of array of objects.
 
   useEffect(() => {
     dispatch({ type: "LOADING" });
@@ -33,12 +32,12 @@ export const FilterContextProvider = ({ children }) => {
   }
 
   //Soting products
-  function setSortingValue(value) {
-    return dispatch({ type: "SET_SORTING_VALUE", payload: value });
+  function setSortingValue(UserValue) {
+    return dispatch({ type: "SET_SORTING_VALUE", payload: UserValue });
   }
 
   useEffect(()=>{
-    dispatch({type:"SORTING_PRODUCTS", payload: products})
+    dispatch({type:"SORTING_PRODUCTS"})
   },[state.sortingValue])
 
 

@@ -9,8 +9,8 @@ const FilterReducer = (state, action) => {
     case "LOAD_PRODUCTS_DATA_IN_FILTER_CONTEXT_FROM_PRODUCT_CONTEXT":
       return {
         ...state,
-        filterProducts: [...action.payload],  //making a copy of products i.e (array of objects)
-        allProducts: [...action.payload],
+        allProducts: [...action.payload], //making a copy of products using spread opearator.
+        filterProducts: [...action.payload],  
       };
 
     case "SET_GRID_VIEW":
@@ -32,7 +32,7 @@ const FilterReducer = (state, action) => {
       };
 
     case "SORTING_PRODUCTS":
-      let ProductsToBeSorted = [... action.payload]
+      let ProductsToBeSorted = state.filterProducts
       let newSortedProducts;
 
       if (state.sortingValue === "highest") {
