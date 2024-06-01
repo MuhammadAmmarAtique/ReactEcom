@@ -8,7 +8,7 @@ const Products = () => {
 
   const {isLoading, allProducts, filterProducts} = useFilterContext()
 
-  // if (isLoading || !filterProducts.length) {
+  // if (isLoading || !filterProducts.length) {  TODO (set loading state after completing full products page)
   //   return <div>...Loading </div>
   // }
 
