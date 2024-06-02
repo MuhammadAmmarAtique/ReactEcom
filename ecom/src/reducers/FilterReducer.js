@@ -9,7 +9,7 @@ const FilterReducer = (state, action) => {
     case "LOAD_PRODUCTS_DATA_IN_FILTER_CONTEXT_FROM_PRODUCT_CONTEXT":
       return {
         ...state,
-        allProducts: [...action.payload], //making a copy of products using spread opearator.
+        allProducts: [...action.payload], //making a copy of products using spread operator.
         filterProducts: [...action.payload],  
       };
 
@@ -32,7 +32,7 @@ const FilterReducer = (state, action) => {
       };
 
     case "SORTING_PRODUCTS":
-      let ProductsToBeSorted = state.filterProducts
+      let ProductsToBeSorted = [...state.filterProducts]
       let newSortedProducts;
 
       if (state.sortingValue === "highest") {
@@ -49,6 +49,28 @@ const FilterReducer = (state, action) => {
         ...state,
         filterProducts: newSortedProducts
       };
+
+
+      case "SET_FILTERS_VALUE":
+      return {
+        ...state,
+        filters: {
+          text: action.payload.value
+        },
+      };
+
+      case "FILTER_PRODUCTS":  //search functionality
+    let ProductsToBeFiltered = [...state.allProducts];
+    let UserEnteredText = state.filters.text.toLowerCase();
+
+    let newFilteredProducts = ProductsToBeFiltered.filter(product =>
+        product.title.toLowerCase().includes(UserEnteredText)
+    );
+
+    return {
+        ...state,
+        filterProducts: newFilteredProducts
+    };
 
     default:
       return state;
