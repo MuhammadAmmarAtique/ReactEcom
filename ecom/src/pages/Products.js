@@ -2,15 +2,8 @@ import styled from "styled-components";
 import FilterSection from "../components/FilterSection";
 import ProductList from "../components/ProductList";
 import Sort from "../components/Sort";
-import { useFilterContext } from "../context/FilterContext";
 
 const Products = () => {
-
-  const {isLoading, allProducts, filterProducts} = useFilterContext()
-
-  // if (isLoading || !filterProducts.length) {  TODO (set loading state after completing full products page)
-  //   return <div>...Loading </div>
-  // }
 
   return (
     <Wrapper>

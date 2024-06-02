@@ -9,6 +9,7 @@ const FilterReducer = (state, action) => {
     case "LOAD_PRODUCTS_DATA_IN_FILTER_CONTEXT_FROM_PRODUCT_CONTEXT":
       return {
         ...state,
+        isLoading: false,
         allProducts: [...action.payload], //making a copy of products using spread operator.
         filterProducts: [...action.payload],  
       };
