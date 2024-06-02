@@ -6,10 +6,9 @@ import { Button } from "../styles/Button";
 import CartAmountToggle from "./CartAmountToggle";
 
 const AddToCart = ({ product }) => {
-  const { id } = product;
-  // I am not getting product PRODUCT colors and stock from api so i defined them here.
-  const colors = ["#FF5733", "#33FF57", "#3357FF"]; 
-  const stock = 5;
+  const Product = product.data;
+  const { colors } = Product; //array of colors
+  const { stock } = Product;
 
   const [color, setColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
@@ -33,7 +32,8 @@ const AddToCart = ({ product }) => {
                 key={index}
                 style={{ backgroundColor: curColor }}
                 className={color === curColor ? "btnStyle active" : "btnStyle"}
-                onClick={() => setColor(curColor)}>
+                onClick={() => setColor(curColor)}
+              >
                 {color === curColor ? <FaCheck className="checkStyle" /> : null}
               </button>
             );

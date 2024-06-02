@@ -4,14 +4,12 @@ import GridView from "./GridView";
 import ListView from "./ListView";
 import Loader from "./Loader";
 
-
 const ProductList = () => {
-  const {isLoading, filterProducts, grid_view } = useFilterContext();
+  const { isLoading, filterProducts, grid_view } = useFilterContext();
 
-  if (isLoading || !filterProducts.length) {  
-    return <Loader/>
+  if (isLoading || !filterProducts.length) {
+    return <Loader />;
   }
-  
 
   if (grid_view === true) {
     return <GridView products={filterProducts} />;

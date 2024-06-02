@@ -1,11 +1,12 @@
-import styled from 'styled-components'
-import {useFilterContext} from "../context/FilterContext"
+import styled from "styled-components";
+import { useFilterContext } from "../context/FilterContext";
 
 function FilterSection() {
-    const { filters ,SetFilterValue} = useFilterContext();
-    const text = filters.text;
+  const { filters, SetFilterValue } = useFilterContext();
+  const text = filters.text;
 
-    return (<Wrapper>
+  return (
+    <Wrapper>
       <div className="filter-search">
         <form onSubmit={(e) => e.preventDefault()}>
           <input
@@ -13,11 +14,12 @@ function FilterSection() {
             name="text"
             placeholder="Search"
             value={text}
-            onChange={(e)=> SetFilterValue(e)}
+            onChange={(e) => SetFilterValue(e)}
           />
         </form>
       </div>
-    </Wrapper>  );
+    </Wrapper>
+  );
 }
 
 export default FilterSection;

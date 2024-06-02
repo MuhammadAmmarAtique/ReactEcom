@@ -41,9 +41,9 @@ const FilterReducer = (state, action) => {
       } else if (state.sortingValue === "lowest") {
         newSortedProducts = ProductsToBeSorted.sort((a, b) => a.price - b.price);
       } else if (state.sortingValue === "a-z") {
-        newSortedProducts = ProductsToBeSorted.sort((a, b) => a.title.localeCompare(b.title));
+        newSortedProducts = ProductsToBeSorted.sort((a, b) => a.name.localeCompare(b.name));
       } else if (state.sortingValue === "z-a") {
-        newSortedProducts = ProductsToBeSorted.sort((a, b) => b.title.localeCompare(a.title));
+        newSortedProducts = ProductsToBeSorted.sort((a, b) => b.name.localeCompare(a.name));
       }
 
       return {
@@ -65,7 +65,7 @@ const FilterReducer = (state, action) => {
     let UserEnteredText = state.filters.text.toLowerCase();
 
     let newFilteredProducts = ProductsToBeFiltered.filter(product =>
-        product.title.toLowerCase().includes(UserEnteredText)
+        product.name.toLowerCase().includes(UserEnteredText)
     );
 
     return {

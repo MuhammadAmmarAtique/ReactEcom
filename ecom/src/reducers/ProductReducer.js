@@ -5,7 +5,7 @@ function ProductReducer(state, action) {
 
     case "MY_API_DATA(PRODUCTS)":
       const AllProducts = action.payload;
-      const featuredProducts = AllProducts.filter((elem) => elem.id <= 3);
+      const featuredProducts = AllProducts.filter((elem) => elem.featured === true);
       return {
         ...state,
         isLoading: false,

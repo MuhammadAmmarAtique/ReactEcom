@@ -4,10 +4,11 @@ import { useProductContext } from "../context/ProductsContext";
 import { useEffect } from "react";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
-import PageNavigation from "../components/PageNavigation";
 import { Container } from "../styles/Container";
-// import MyImage from "../components/MyImage" //use it if data of images from api is coming as array of objects (like in one array there are 3 images as an object)
 import FormatPrice from "../helpers/FormatPrice";
+//Components
+import PageNavigation from "../components/PageNavigation";
+import MyImage from "../components/MyImage"
 import Star from "../components/Star"
 import AddToCart from "../components/AddToCart";
 import Loader from "../components/Loader"
@@ -15,11 +16,10 @@ import Loader from "../components/Loader"
 
 function SingleProduct() {
   const { id } = useParams();
-
   const { getSingleProductData, isSingleProductLoading, SingleProduct } = useProductContext();
 
   useEffect(() => {
-    getSingleProductData(`https://fakestoreapi.com/products/${id}`);
+    getSingleProductData(`https://api.pujakaitem.com/api/products/${id}`);
 }, [id]);
 
   // Check if the data is still loading or if it's not yet available
@@ -29,34 +29,29 @@ function SingleProduct() {
 
   const {
     id: alias, // renaming product id as alias.
-    title,
+    name,
     price,
     description,
     category,
     image,
-    rating: { rate, count }, //nested destructuring (where rate is rating and count is a number of reviews)
+    stars,
+    reviews
   } = SingleProduct.data; //destructuring singleproduct object
 
   return (
     <Wrapper>
-      <PageNavigation title={title} />
+      <PageNavigation name={name} />
       <Container className="container">
         <div className="grid grid-two-column">
-          {/* product Images  */}
+          {/* Product Images  */}
           <div className="product_images">
-          {/* <MyImage imgs={image} /> */}
-            <img
-              src={image}
-              alt="product image"
-              height="300px"
-              width="300px"
-            ></img>
+          <MyImage imgs={image} />
           </div>
 
-          {/* product dAta  */}
+          {/* Product data  */}
           <div className="product-data">
-            <h2>{title}</h2>
-            <Star rating={rate} reviews={count} />
+            <h2>{name}</h2>
+            <Star rating={stars} reviews={reviews} />
             <p className="product-data-price">
               MRP:
               <del>
@@ -95,7 +90,7 @@ function SingleProduct() {
               </p>
               <p>
                 Rating:
-                <span> {rate}</span>
+                <span> {stars}</span>
               </p>
               <p>
                 Category :<span> {category} </span>
