@@ -2,11 +2,26 @@ import styled from "styled-components";
 import { useFilterContext } from "../context/FilterContext";
 
 function FilterSection() {
-  const { filters, SetFilterValue } = useFilterContext();
+  const { filters, SetFilterValue, allProducts } = useFilterContext();
   const text = filters.text;
+
+  // ExtractData FUNCTION (making a function for this file to extract specific data from all products)
+  // (like data for category,company,colors,price)
+
+  function ExtractData(AllProducts, dataToExtract) {
+    const ExtractedData = [];
+    AllProducts.forEach((product) => {
+      ExtractedData.push(product[dataToExtract]);
+    });
+
+    return ["All", ...new Set(ExtractedData)]; //using "Set" to end reptition in extracted data
+  }
+  // #1 calling above function to get "category" related data
+  const categoryData = ExtractData(allProducts, "category");
 
   return (
     <Wrapper>
+      {/* 1) search field */}
       <div className="filter-search">
         <form onSubmit={(e) => e.preventDefault()}>
           <input
@@ -17,6 +32,27 @@ function FilterSection() {
             onChange={(e) => SetFilterValue(e)}
           />
         </form>
+      </div>
+
+      {/* 2)category */}
+      <div className="filter-category">
+        <h3>Category</h3>
+        <div>
+          {categoryData.map((curElem, index) => {
+            return (
+              <button
+                key={index}
+                type="button"
+                name="category"
+                value={curElem}
+                // className={curElem === category ? "active" : ""}
+                // onClick={updateFilterValue}>
+              >
+                {curElem}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </Wrapper>
   );
