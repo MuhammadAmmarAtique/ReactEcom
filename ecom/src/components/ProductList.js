@@ -2,13 +2,14 @@ import React from "react";
 import { useFilterContext } from "../context/FilterContext";
 import GridView from "./GridView";
 import ListView from "./ListView";
+import Loader from "./Loader";
 
 
 const ProductList = () => {
   const {isLoading, filterProducts, grid_view } = useFilterContext();
 
   if (isLoading || !filterProducts.length) {  
-    return <div style={{textAlign:"center", marginTop: "10px"}}>...Loading </div>
+    return <Loader/>
   }
   
 

@@ -10,6 +10,8 @@ import { Container } from "../styles/Container";
 import FormatPrice from "../helpers/FormatPrice";
 import Star from "../components/Star"
 import AddToCart from "../components/AddToCart";
+import Loader from "../components/Loader"
+
 
 function SingleProduct() {
   const { id } = useParams();
@@ -22,7 +24,7 @@ function SingleProduct() {
 
   // Check if the data is still loading or if it's not yet available
   if (isSingleProductLoading || !SingleProduct.data) {
-    return <div className="page_loading">...Loading</div>;
+    return <Loader/>;
   }
 
   const {
