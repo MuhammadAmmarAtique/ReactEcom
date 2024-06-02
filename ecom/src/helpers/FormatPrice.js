@@ -3,8 +3,8 @@ function formatPrice({ price }) {
     {
         style: "currency",
         currency: "PKR",
-        maximumFractionDigits: 2,   // after point 2 numbers come
-    }).format(price * 250);        // suppose price is coming in dollars and 1 dollar = 250pkr
+        maximumFractionDigits: 0,   // after point no numbers will come
+    }).format(price);        
 }
 
 export default formatPrice;

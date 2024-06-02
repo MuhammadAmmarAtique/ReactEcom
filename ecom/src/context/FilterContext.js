@@ -12,7 +12,7 @@ const initialState = {
   grid_view: true,
   sortingValue: "lowest", //by seeing this we are filtering Products based on price and title characters (a to z or z to a)
   filters: {
-    text: "",
+    text: "",  //here "text" is used for search functionality
   },
 };
 
