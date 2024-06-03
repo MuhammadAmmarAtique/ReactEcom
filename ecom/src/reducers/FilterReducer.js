@@ -11,7 +11,7 @@ const FilterReducer = (state, action) => {
         ...state,
         isLoading: false,
         allProducts: [...action.payload], //making a copy of products using spread operator.
-        filterProducts: [...action.payload],  
+        filterProducts: [...action.payload],
       };
 
     case "SET_GRID_VIEW":
@@ -33,45 +33,68 @@ const FilterReducer = (state, action) => {
       };
 
     case "SORTING_PRODUCTS":
-      let ProductsToBeSorted = [...state.filterProducts]
+      let ProductsToBeSorted = [...state.filterProducts];
       let newSortedProducts;
 
       if (state.sortingValue === "highest") {
-        newSortedProducts = ProductsToBeSorted.sort((a, b) => b.price - a.price);
+        newSortedProducts = ProductsToBeSorted.sort(
+          (a, b) => b.price - a.price
+        );
       } else if (state.sortingValue === "lowest") {
-        newSortedProducts = ProductsToBeSorted.sort((a, b) => a.price - b.price);
+        newSortedProducts = ProductsToBeSorted.sort(
+          (a, b) => a.price - b.price
+        );
       } else if (state.sortingValue === "a-z") {
-        newSortedProducts = ProductsToBeSorted.sort((a, b) => a.name.localeCompare(b.name));
+        newSortedProducts = ProductsToBeSorted.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
       } else if (state.sortingValue === "z-a") {
-        newSortedProducts = ProductsToBeSorted.sort((a, b) => b.name.localeCompare(a.name));
+        newSortedProducts = ProductsToBeSorted.sort((a, b) =>
+          b.name.localeCompare(a.name)
+        );
       }
 
       return {
         ...state,
-        filterProducts: newSortedProducts
+        filterProducts: newSortedProducts,
       };
 
-
-      case "SET_FILTERS_TEXT_VALUE":
+    case "SET_FILTERS_VALUE":
+      const { name, value } = action.payload;
       return {
         ...state,
         filters: {
-          text: action.payload.value
+          ...state.filters,
+          [name]: value,
         },
       };
 
-      case "FILTER_PRODUCTS":  //search functionality
-    let ProductsToBeFiltered = [...state.allProducts];
-    let UserEnteredText = state.filters.text.toLowerCase();
+    case "FILTER_PRODUCTS":
+      let ProductsToBeFiltered = [...state.allProducts];
+      let newFilteredProducts = ProductsToBeFiltered; //for default case (when products page will load initially)
 
-    let newFilteredProducts = ProductsToBeFiltered.filter(product =>
-        product.name.toLowerCase().includes(UserEnteredText)
-    );
+      const { text, category, company, color, price } = state.filters;
 
-    return {
+      //1) search functionality (filters products based on what user entered in search field)
+      if (text) {
+        let UserEnteredText = text.toLowerCase();
+        newFilteredProducts = newFilteredProducts.filter((product) =>
+          product.name.toLowerCase().includes(UserEnteredText)
+        );
+      }
+      //2) filters products based on  user selected category)
+      if (category && category != "All") {
+        let UserSelectedCategory = category;
+
+        newFilteredProducts = newFilteredProducts.filter(
+          (product) => product.category === UserSelectedCategory
+        );
+      }
+
+      return {
         ...state,
-        filterProducts: newFilteredProducts
-    };
+        filterProducts: newFilteredProducts,
+      };
 
     default:
       return state;

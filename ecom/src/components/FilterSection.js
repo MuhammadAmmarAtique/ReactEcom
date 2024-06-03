@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { useFilterContext } from "../context/FilterContext";
 
 function FilterSection() {
-  const { filters, setFiltersTextValue, allProducts } = useFilterContext();
+  const { filters, setFiltersValue, allProducts } = useFilterContext();
   const text = filters.text;
+  const category = filters.category;
 
   // ExtractData FUNCTION (making a function for this file to extract specific data from all products)
   // (like data for category,company,colors,price)
@@ -18,7 +19,7 @@ function FilterSection() {
   }
   // #1 calling above function to get "category" related data
   const categoryData = ExtractData(allProducts, "category");
-  console.log("categoryData: ", categoryData);
+
 
   return (
     <Wrapper>
@@ -27,10 +28,10 @@ function FilterSection() {
         <form onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
-            name="text"
             placeholder="Search"
+            name="text"  //name and value will be used in setFilterValue function
             value={text}
-            onChange={(e) => setFiltersTextValue(e)}
+            onChange={(e) => setFiltersValue(e)}
           />
         </form>
       </div>
@@ -46,8 +47,8 @@ function FilterSection() {
                 type="button"
                 name="category"
                 value={curElem}
-                // className={curElem === category ? "active" : ""}
-                // onClick={updateFilterValue}>
+                className={curElem === category ? "active" : ""}
+                onClick={(e) => setFiltersValue(e)}
               >
                 {curElem}
               </button>

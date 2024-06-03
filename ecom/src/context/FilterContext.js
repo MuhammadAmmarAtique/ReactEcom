@@ -20,6 +20,7 @@ const initialState = {
 
 export const FilterContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  // console.log("state: ", state);
   const { products } = useProductContext(); //products are coming in form of array of objects.
 
   useEffect(() => {
@@ -49,11 +50,11 @@ export const FilterContextProvider = ({ children }) => {
   }, [state.sortingValue]);
 
   //Filters (FilterSection.js)
-  function setFiltersTextValue(event) {
+  function setFiltersValue(event) {
     const name = event.target.name; //input field name
-    const value = event.target.value; //value user will type
+    const value = event.target.value; //input field value
 
-    return dispatch({ type: "SET_FILTERS_TEXT_VALUE", payload: { name, value } });
+    return dispatch({ type: "SET_FILTERS_VALUE", payload: { name, value } });
   }
 
   useEffect(() => {
@@ -67,7 +68,7 @@ export const FilterContextProvider = ({ children }) => {
         setGridView,
         setListView,
         setSortingValue,
-        setFiltersTextValue,
+        setFiltersValue,
       }}
     >
       {children}
