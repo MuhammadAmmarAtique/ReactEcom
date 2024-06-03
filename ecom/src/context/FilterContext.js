@@ -13,6 +13,8 @@ const initialState = {
   sortingValue: "lowest", //by seeing this we are filtering Products based on price and title characters (a to z or z to a)
   filters: {
     text: "",  //here "text" is used for search functionality
+    category: "All",
+    company: "All",
   },
 };
 
@@ -46,12 +48,12 @@ export const FilterContextProvider = ({ children }) => {
     dispatch({ type: "SORTING_PRODUCTS" });
   }, [state.sortingValue]);
 
-  //filters (FilterSection.js)
-  function SetFilterValue(event) {
+  //Filters (FilterSection.js)
+  function setFiltersTextValue(event) {
     const name = event.target.name; //input field name
     const value = event.target.value; //value user will type
 
-    return dispatch({ type: "SET_FILTERS_VALUE", payload: { name, value } });
+    return dispatch({ type: "SET_FILTERS_TEXT_VALUE", payload: { name, value } });
   }
 
   useEffect(() => {
@@ -65,7 +67,7 @@ export const FilterContextProvider = ({ children }) => {
         setGridView,
         setListView,
         setSortingValue,
-        SetFilterValue,
+        setFiltersTextValue,
       }}
     >
       {children}

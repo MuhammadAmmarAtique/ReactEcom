@@ -52,7 +52,7 @@ const FilterReducer = (state, action) => {
       };
 
 
-      case "SET_FILTERS_VALUE":
+      case "SET_FILTERS_TEXT_VALUE":
       return {
         ...state,
         filters: {

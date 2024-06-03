@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useFilterContext } from "../context/FilterContext";
 
 function FilterSection() {
-  const { filters, SetFilterValue, allProducts } = useFilterContext();
+  const { filters, setFiltersTextValue, allProducts } = useFilterContext();
   const text = filters.text;
 
   // ExtractData FUNCTION (making a function for this file to extract specific data from all products)
@@ -18,6 +18,7 @@ function FilterSection() {
   }
   // #1 calling above function to get "category" related data
   const categoryData = ExtractData(allProducts, "category");
+  console.log("categoryData: ", categoryData);
 
   return (
     <Wrapper>
@@ -29,7 +30,7 @@ function FilterSection() {
             name="text"
             placeholder="Search"
             value={text}
-            onChange={(e) => SetFilterValue(e)}
+            onChange={(e) => setFiltersTextValue(e)}
           />
         </form>
       </div>
