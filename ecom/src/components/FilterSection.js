@@ -27,22 +27,9 @@ function FilterSection() {
 
   // #3 calling above function to get "colors" related data
   const extractedColorsData = ExtractData(allProducts, "colors");
-
-  // Function to get unique colors from the extractedColorsData
-  function getUniqueColors(colorsData) {
-    const uniqueColorsSet = new Set();
-    for (let i = 1; i < colorsData.length; i++) {
-      for (let color of colorsData[i]) {
-        uniqueColorsSet.add(color);
-      }
-    }
-    return Array.from(uniqueColorsSet);
-  }
-
-  // Get the unique colors and prepend "All"
-  const uniqueColors = getUniqueColors(extractedColorsData);
-  const ColorsData = ["All", ...uniqueColors];
-
+  
+  // Getting unique colors from the extractedColorsData
+  const ColorsData = [...new Set(extractedColorsData.flat())]
   return (
     <Wrapper>
       {/* 1) search field */}
