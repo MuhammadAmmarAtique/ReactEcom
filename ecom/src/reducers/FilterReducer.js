@@ -85,7 +85,7 @@ const FilterReducer = (state, action) => {
         );
       }
       //2) filters products based on user selected category)
-      if (category && category != "All") {  //if value is "All" dont filter the products (i.e dont run this code),  
+      if (category && category !== "All") {  //if value is "All" dont filter the products (i.e dont run this code),  
         let UserSelectedCategory = category; // show all products to user.
 
         newFilteredProducts = newFilteredProducts.filter(
@@ -94,11 +94,20 @@ const FilterReducer = (state, action) => {
       }
 
        //3) filters products based on user selected company)
-       if (company && company != "All") {
+       if (company && company !=="All") {
         let UserSelectedCompany = company;
 
         newFilteredProducts = newFilteredProducts.filter(
           (product) => product.company === UserSelectedCompany
+        );
+      }
+
+       //4) filters products based on user selected color)
+       if (color && color !== "All") {
+        let UserSelectedColor = color;
+
+        newFilteredProducts = newFilteredProducts.filter(
+          (product) => product.colors.includes(UserSelectedColor)
         );
       }
 

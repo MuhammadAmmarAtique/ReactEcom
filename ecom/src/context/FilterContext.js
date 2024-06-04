@@ -15,6 +15,7 @@ const initialState = {
     text: "",  //here "text" is used for search functionality
     category: "All",
     company: "All",
+    color:"All",
   },
 };
 

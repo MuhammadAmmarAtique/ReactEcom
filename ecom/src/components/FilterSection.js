@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { FaCheck } from "react-icons/fa";
 import { useFilterContext } from "../context/FilterContext";
 
 function FilterSection() {
   const { filters, setFiltersValue, allProducts } = useFilterContext();
   const text = filters.text;
   const category = filters.category;
+  const color = filters.color;
 
   // ExtractData FUNCTION (making a function for this file to extract specific data from all products)
   // (like data for category,company,colors,price)
@@ -20,9 +22,26 @@ function FilterSection() {
   // #1 calling above function to get "category" related data
   const categoryData = ExtractData(allProducts, "category");
 
-   // #2 calling above function to get "company" related data
-   const companyData = ExtractData(allProducts, "company");
+  // #2 calling above function to get "company" related data
+  const companyData = ExtractData(allProducts, "company");
 
+  // #3 calling above function to get "colors" related data
+  const extractedColorsData = ExtractData(allProducts, "colors");
+
+  // Function to get unique colors from the extractedColorsData
+  function getUniqueColors(colorsData) {
+    const uniqueColorsSet = new Set();
+    for (let i = 1; i < colorsData.length; i++) {
+      for (let color of colorsData[i]) {
+        uniqueColorsSet.add(color);
+      }
+    }
+    return Array.from(uniqueColorsSet);
+  }
+
+  // Get the unique colors and prepend "All"
+  const uniqueColors = getUniqueColors(extractedColorsData);
+  const ColorsData = ["All", ...uniqueColors];
 
   return (
     <Wrapper>
@@ -32,7 +51,7 @@ function FilterSection() {
           <input
             type="text"
             placeholder="Search"
-            name="text"  //name and value will be used in setFilterValue function
+            name="text" //name and value will be used in setFilterValue function
             value={text}
             onChange={(e) => setFiltersValue(e)}
           />
@@ -69,7 +88,8 @@ function FilterSection() {
             name="company"
             id="company"
             className="filter-company--select"
-            onClick={(e)=> setFiltersValue(e)}>
+            onClick={(e) => setFiltersValue(e)}
+          >
             {companyData.map((curElem, index) => {
               return (
                 <option key={index} value={curElem} name="company">
@@ -79,6 +99,43 @@ function FilterSection() {
             })}
           </select>
         </form>
+      </div>
+
+      {/* 4)colors */}
+      <div className="filter-colors colors">
+        <h3>Colors</h3>
+
+        <div className="filter-color-style">
+          {ColorsData.map((curColor, index) => {
+            if (curColor === "All") {
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  value={curColor}
+                  name="color"
+                  className="color-all--style"
+                  onClick={(e) => setFiltersValue(e)}
+                >
+                  All
+                </button>
+              );
+            }
+            return (
+              <button
+                key={index}
+                type="button"
+                value={curColor}
+                name="color"
+                style={{ backgroundColor: curColor }}
+                className={curColor === color ? "btnStyle active" : "btnStyle"}
+                onClick={(e) => setFiltersValue(e)}
+              >
+                {curColor === color ? <FaCheck className="checkStyle" /> : null}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </Wrapper>
   );
