@@ -20,6 +20,9 @@ function FilterSection() {
   // #1 calling above function to get "category" related data
   const categoryData = ExtractData(allProducts, "category");
 
+   // #2 calling above function to get "company" related data
+   const companyData = ExtractData(allProducts, "company");
+
 
   return (
     <Wrapper>
@@ -55,6 +58,27 @@ function FilterSection() {
             );
           })}
         </div>
+      </div>
+
+      {/* 3)company */}
+      <div className="filter-company">
+        <h3>Company</h3>
+
+        <form action="#">
+          <select
+            name="company"
+            id="company"
+            className="filter-company--select"
+            onClick={(e)=> setFiltersValue(e)}>
+            {companyData.map((curElem, index) => {
+              return (
+                <option key={index} value={curElem} name="company">
+                  {curElem}
+                </option>
+              );
+            })}
+          </select>
+        </form>
       </div>
     </Wrapper>
   );

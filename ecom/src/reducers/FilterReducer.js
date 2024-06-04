@@ -65,8 +65,8 @@ const FilterReducer = (state, action) => {
         ...state,
         filters: {
           ...state.filters,
-          [name]: value,
-        },
+          [name]: value,    //using this "[name]" name will dynamically add i.e text,category,company etc
+        },           //+ based on that name, value will be stored in that state and remaining states will remains same.
       };
 
     case "FILTER_PRODUCTS":
@@ -74,6 +74,8 @@ const FilterReducer = (state, action) => {
       let newFilteredProducts = ProductsToBeFiltered; //for default case (when products page will load initially)
 
       const { text, category, company, color, price } = state.filters;
+      // here below we will run code based on "thruthy" values, like if value is present and its not empty, only then run 
+      // the code.
 
       //1) search functionality (filters products based on what user entered in search field)
       if (text) {
@@ -82,12 +84,21 @@ const FilterReducer = (state, action) => {
           product.name.toLowerCase().includes(UserEnteredText)
         );
       }
-      //2) filters products based on  user selected category)
-      if (category && category != "All") {
-        let UserSelectedCategory = category;
+      //2) filters products based on user selected category)
+      if (category && category != "All") {  //if value is "All" dont filter the products (i.e dont run this code),  
+        let UserSelectedCategory = category; // show all products to user.
 
         newFilteredProducts = newFilteredProducts.filter(
           (product) => product.category === UserSelectedCategory
+        );
+      }
+
+       //3) filters products based on user selected company)
+       if (company && company != "All") {
+        let UserSelectedCompany = company;
+
+        newFilteredProducts = newFilteredProducts.filter(
+          (product) => product.company === UserSelectedCompany
         );
       }
 
