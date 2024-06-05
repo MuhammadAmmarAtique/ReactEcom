@@ -16,7 +16,7 @@ const initialState = {
     category: "All",
     company: "All",
     color:"All",
-    price: 2500,
+    price: 0,
   },
 };
 
@@ -55,7 +55,7 @@ export const FilterContextProvider = ({ children }) => {
   function setFiltersValue(event) {
     const name = event.target.name; //input field name
     const value = event.target.value; //input field value
-    
+
     return dispatch({ type: "SET_FILTERS_VALUE", payload: { name, value } });
   }
 

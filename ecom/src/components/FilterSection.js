@@ -29,7 +29,15 @@ const {text, category, color, price} = filters;
   
   // Getting unique colors from the extractedColorsData
   const ColorsData = [...new Set(extractedColorsData.flat())]
-  return (
+
+    // #4 calling above function to get "price" related data
+    const extractedPriceData = ExtractData(allProducts, "price");
+    const PriceData = extractedPriceData.slice(1)
+    const minPrice = Math.min(...PriceData)
+    const maxPrice = Math.max(...PriceData) 
+
+
+return (
     <Wrapper>
       {/* 1) search field */}
       <div className="filter-search">
@@ -132,10 +140,8 @@ const {text, category, color, price} = filters;
         </p>
         <input
           type="range"
-          // min={minPrice}
-          // max={maxPrice}
-          min={12599}
-          max={6000000}
+          min={minPrice}
+          max={maxPrice}
           name="price"
           value={price}
           onChange={(e) => setFiltersValue(e)}

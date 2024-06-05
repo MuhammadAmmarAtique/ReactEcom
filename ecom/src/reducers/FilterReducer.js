@@ -112,14 +112,10 @@ const FilterReducer = (state, action) => {
       }
 
       // 4) filters products based on user selected price)
-      if (price) {
+      if (price && price !== 0) {
         let UserSelectedPrice = price;
-
-        const TOLERANCE = 1; // Define a tolerance value, e.g., 1 currency unit
-
         newFilteredProducts = newFilteredProducts.filter(
-          (product) => 
-          product.price >= (UserSelectedPrice - TOLERANCE) && product.price <= (UserSelectedPrice + TOLERANCE)
+          (product) =>  product.price <= UserSelectedPrice
         );
         
       }
