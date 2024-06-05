@@ -17,12 +17,15 @@ const initialState = {
     company: "All",
     color:"All",
     price: 0,
+    minPrice:0,
+    maxPrice:0
+
   },
 };
 
 export const FilterContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("state: ", state);
+  // console.log("state: ", state);
   const { products } = useProductContext(); //products are coming in form of array of objects.
 
   useEffect(() => {
@@ -49,7 +52,7 @@ export const FilterContextProvider = ({ children }) => {
 
   useEffect(() => {
     dispatch({ type: "SORTING_PRODUCTS" });
-  }, [state.sortingValue]);
+  }, [state.sortingValue, state.filterProducts]);
 
   //Filters (FilterSection.js)
   function setFiltersValue(event) {
@@ -67,7 +70,6 @@ export const FilterContextProvider = ({ children }) => {
   function clearFilters() {
     dispatch({type:"CLEAR_FILTERS"})
   }
-
   return (
     <FilterContext.Provider
       value={{

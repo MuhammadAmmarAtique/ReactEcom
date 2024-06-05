@@ -7,11 +7,26 @@ const FilterReducer = (state, action) => {
       };
 
     case "LOAD_PRODUCTS_DATA_IN_FILTER_CONTEXT_FROM_PRODUCT_CONTEXT":
+
+      //  getting data to show highest price value in html range tag for price in filtersection.js 
+      const PriceArray = action.payload.map((elem)=> elem.price)
+      const minPrice = Math.min(...PriceArray)
+      const maxPrice = Math.max(...PriceArray)
+      
       return {
         ...state,
         isLoading: false,
         allProducts: [...action.payload], //making a copy of products using spread operator.
         filterProducts: [...action.payload],
+
+        //price
+        filters:{
+         ...state.filters,
+         price:maxPrice,      //showing maxprice by default
+         minPrice: minPrice,
+         maxPrice:maxPrice
+
+        }
       };
 
     case "SET_GRID_VIEW":
@@ -130,11 +145,14 @@ const FilterReducer = (state, action) => {
         return {
           ...state,
           filters: {
-            text: "",  //here "text" is used for search functionality
+            text: "",  
             category: "All",
             company: "All",
             color:"All",
-            price: 0,
+            // 
+           price: 0,
+           minPrice:state.filters.minPrice, 
+          maxPrice:state.filters.maxPrice
           },
         };
     default:

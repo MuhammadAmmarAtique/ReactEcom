@@ -6,7 +6,7 @@ import { useFilterContext } from "../context/FilterContext";
 
 function FilterSection() {
   const { filters, setFiltersValue, allProducts, clearFilters } = useFilterContext();
-const {text, category, color, price} = filters;
+const {text, category, color, price , minPrice, maxPrice} = filters;
 
   // ExtractData FUNCTION (making a function for this file to extract specific data from all products)
   // (like data for category,company,colors,price)
@@ -30,13 +30,6 @@ const {text, category, color, price} = filters;
   
   // Getting unique colors from the extractedColorsData
   const ColorsData = [...new Set(extractedColorsData.flat())]
-
-    // #4 calling above function to get "price" related data
-    const extractedPriceData = ExtractData(allProducts, "price");
-    const PriceData = extractedPriceData.slice(1)
-    const minPrice = Math.min(...PriceData)
-    const maxPrice = Math.max(...PriceData) 
-
 
 return (
     <Wrapper>
