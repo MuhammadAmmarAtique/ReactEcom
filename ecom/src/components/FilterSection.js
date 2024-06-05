@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { FaCheck } from "react-icons/fa";
 import FormatPrice from "../helpers/FormatPrice"
+import {Button} from "../styles/Button"
 import { useFilterContext } from "../context/FilterContext";
 
 function FilterSection() {
-  const { filters, setFiltersValue, allProducts } = useFilterContext();
+  const { filters, setFiltersValue, allProducts, clearFilters } = useFilterContext();
 const {text, category, color, price} = filters;
 
   // ExtractData FUNCTION (making a function for this file to extract specific data from all products)
@@ -146,6 +147,13 @@ return (
           value={price}
           onChange={(e) => setFiltersValue(e)}
         />
+      </div>
+
+      {/* 6)Clear filters button */}
+      <div className="filter-clear">
+        <Button className="btn" onClick={clearFilters}>
+          Clear Filters
+        </Button>
       </div>
     </Wrapper>
   );

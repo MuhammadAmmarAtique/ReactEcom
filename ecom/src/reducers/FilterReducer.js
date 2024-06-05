@@ -102,7 +102,7 @@ const FilterReducer = (state, action) => {
         );
       }
 
-       //4) filters products based on user selected color)
+       //4) filters products based on user selected color) 
        if (color && color !== "All") {
         let UserSelectedColor = color;
 
@@ -112,6 +112,7 @@ const FilterReducer = (state, action) => {
       }
 
       // 4) filters products based on user selected price)
+      //  (showing all products of price less then and equal to userselected price)
       if (price && price !== 0) {
         let UserSelectedPrice = price;
         newFilteredProducts = newFilteredProducts.filter(
@@ -125,6 +126,17 @@ const FilterReducer = (state, action) => {
         filterProducts: newFilteredProducts,
       };
 
+      case "CLEAR_FILTERS":
+        return {
+          ...state,
+          filters: {
+            text: "",  //here "text" is used for search functionality
+            category: "All",
+            company: "All",
+            color:"All",
+            price: 0,
+          },
+        };
     default:
       return state;
   }
