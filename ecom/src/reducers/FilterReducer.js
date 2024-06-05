@@ -107,8 +107,21 @@ const FilterReducer = (state, action) => {
         let UserSelectedColor = color;
 
         newFilteredProducts = newFilteredProducts.filter(
-          (product) => product.colors.includes(UserSelectedColor)
+          (product) => product.colors.includes(UserSelectedColor)  //product.colors is an array
         );
+      }
+
+      // 4) filters products based on user selected price)
+      if (price) {
+        let UserSelectedPrice = price;
+
+        const TOLERANCE = 1; // Define a tolerance value, e.g., 1 currency unit
+
+        newFilteredProducts = newFilteredProducts.filter(
+          (product) => 
+          product.price >= (UserSelectedPrice - TOLERANCE) && product.price <= (UserSelectedPrice + TOLERANCE)
+        );
+        
       }
 
       return {

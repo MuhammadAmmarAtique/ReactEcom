@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { FaCheck } from "react-icons/fa";
+import FormatPrice from "../helpers/FormatPrice"
 import { useFilterContext } from "../context/FilterContext";
 
 function FilterSection() {
   const { filters, setFiltersValue, allProducts } = useFilterContext();
-  const text = filters.text;
-  const category = filters.category;
-  const color = filters.color;
+const {text, category, color, price} = filters;
 
   // ExtractData FUNCTION (making a function for this file to extract specific data from all products)
   // (like data for category,company,colors,price)
@@ -123,6 +122,24 @@ function FilterSection() {
             );
           })}
         </div>
+      </div>
+
+      {/* 5)price */}
+      <div className="filter_price">
+        <h3>Price</h3>
+        <p>
+          <FormatPrice price={price} />
+        </p>
+        <input
+          type="range"
+          // min={minPrice}
+          // max={maxPrice}
+          min={12599}
+          max={6000000}
+          name="price"
+          value={price}
+          onChange={(e) => setFiltersValue(e)}
+        />
       </div>
     </Wrapper>
   );
