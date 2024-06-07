@@ -26,7 +26,7 @@ const {text, category, color, price , minPrice, maxPrice} = filters;
   const companyData = ExtractData(allProducts, "company");
 
   // #3 calling above function to get "colors" related data
-  const extractedColorsData = ExtractData(allProducts, "colors");
+  const extractedColorsData = ExtractData(allProducts, "colors"); //its array of arrays
   
   // Getting unique colors from the extractedColorsData
   const ColorsData = [...new Set(extractedColorsData.flat())]

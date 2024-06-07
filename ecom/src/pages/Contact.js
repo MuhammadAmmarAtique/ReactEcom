@@ -39,7 +39,7 @@ const Contact = () => {
       <h2 className="common-heading"> Contact Us </h2>
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.5634113213073!2d72.910209274811!3d33.97805942164517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfb29116f4f94f%3A0xaf454a05b9dadc43!2sThe%20University%20of%20Haripur!5e0!3m2!1sen!2s!4v1716284485451!5m2!1sen!2s"
-        width="95%"
+        width="100%"
         height="350"
         style={{ border: 0 }} //iniside curly brackets we pass styling as an object in form of key value pair
         allowFullScreen=""

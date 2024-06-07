@@ -1,3 +1,6 @@
+// Context#2 (In this context we are getting all products data from ProductsContext.js and storing it in allProducts &
+// filterProducts states so that we can use this data for sorting and filtering products)
+
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { useProductContext } from "./ProductsContext";
 import reducer from "../reducers/FilterReducer";

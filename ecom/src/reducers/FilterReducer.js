@@ -8,7 +8,8 @@ const FilterReducer = (state, action) => {
 
     case "LOAD_PRODUCTS_DATA_IN_FILTER_CONTEXT_FROM_PRODUCT_CONTEXT":
 
-      //  getting data to show highest price value in html range tag for price in filtersection.js 
+      //  getting data to set min and max value in filtersection.js price section and to also
+      //  show highest price value in html range tag for price in filtersection.js 
       const PriceArray = action.payload.map((elem)=> elem.price)
       const minPrice = Math.min(...PriceArray)
       const maxPrice = Math.max(...PriceArray)

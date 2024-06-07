@@ -1,3 +1,7 @@
+// Context#1 (In this context we are getting all products data, storing it, then filtering that data to first of all show
+//  it in featured products section in home page + We are also using this context to get data for single product when ever
+// user clicks on any product)
+
 import React from "react";
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
