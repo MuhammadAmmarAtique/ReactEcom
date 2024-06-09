@@ -50,7 +50,7 @@ const FilterReducer = (state, action) => {
 
     case "SORTING_PRODUCTS":
       let ProductsToBeSorted = [...state.filterProducts];
-      let newSortedProducts;
+      let newSortedProducts = [];
 
       if (state.sortingValue === "highest") {
         newSortedProducts = ProductsToBeSorted.sort(

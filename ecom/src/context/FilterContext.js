@@ -55,7 +55,7 @@ export const FilterContextProvider = ({ children }) => {
 
   useEffect(() => {
     dispatch({ type: "SORTING_PRODUCTS" });
-  }, [state.sortingValue, state.filterProducts]);
+  }, [state.sortingValue]);
 
   //Filters (FilterSection.js)
   function setFiltersValue(event) {
