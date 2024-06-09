@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 
 import { ProductContextProvider } from "./context/ProductsContext";
 import { FilterContextProvider } from "./context/FilterContext";
+import { CartContextProvider } from "./context/CartContext";
 
 import {
   About,
@@ -81,16 +82,18 @@ function App() {
   ]);
 
   return (
-    // wrapping filtercontext inside product context so that we can get products data inside filtercontext from productcontext.
+    <ProductContextProvider> {/* #1 All Products are inside here */}
+      <FilterContextProvider> {/*#2 Then We get all Products from productContext to filterContext and filter them */}
+        <CartContextProvider>  {/*#3 Then comes Add to Cart */}
 
-    <ProductContextProvider>
-      <FilterContextProvider>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle /> {/* Wrapping my application with the GlobalStyle.*/}
-          <RouterProvider router={router} />
-        </ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle /> {/* Wrapping my application with the GlobalStyle.*/}
+            <RouterProvider router={router} />
+          </ThemeProvider>
+          
+        </CartContextProvider>
       </FilterContextProvider>
-    </ProductContextProvider>
+     </ProductContextProvider> 
   );
 }
 
