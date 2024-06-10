@@ -4,14 +4,14 @@ import { FaCheck } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { Button } from "../styles/Button";
 import CartAmountToggle from "./CartAmountToggle";
+import { useCartContext } from "../context/CartContext";
 
 const AddToCart = ({ product }) => {
   const Product = product.data;
-  const { colors } = Product; //array of colors
-  const { stock } = Product;
-
-  const [color, setColor] = useState(colors[0]);
-  const [amount, setAmount] = useState(1);
+  const { colors, stock } = Product; // here colors is an array of colors
+  
+  const [color, setColor] = useState(colors[0]); // current user's selected product color
+  const [amount, setAmount] = useState(1); // current user's selected product amount
 
   const setDecrease = () => {
     amount > 1 ? setAmount(amount - 1) : setAmount(1);
@@ -20,6 +20,10 @@ const AddToCart = ({ product }) => {
   const setIncrease = () => {
     amount < stock ? setAmount(amount + 1) : setAmount(stock);
   };
+
+  //getting addToCart fuction from CartContext
+  const {addToCart} = useCartContext()
+
 
   return (
     <Wrapper>
@@ -48,7 +52,9 @@ const AddToCart = ({ product }) => {
         setIncrease={setIncrease}
       />
 
-      <NavLink to="/cart">
+      <NavLink to="/cart" onClick={() => addToCart(color, amount, Product)}>
+        {/* here color =userselected color, amount= userselected amount/quantity of product he wants to buy, 
+        Product=singleProduct data we fetched in SingleProduct page */}
         <Button className="btn">Add To Cart</Button>
       </NavLink>
     </Wrapper>
