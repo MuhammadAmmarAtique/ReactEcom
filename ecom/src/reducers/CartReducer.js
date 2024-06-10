@@ -1,17 +1,28 @@
-const CartReducer = (state,action)=>{
-    switch (action.type) {
-        case "HANDLE_ADD_TOCART":
-            const  {color, amount, Product } = action.payload;
-            console.log("amount: ", amount);
-            console.log("color: ", color);
-            console.log("Product: ", Product);
-            
-          return state;
-    
-        default:
-            return state;
+const CartReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_PRODUCT_IN_CART":
+      const { color, amount, Product } = action.payload;
 
-    }
-}
+      let cartProduct;
+
+      cartProduct = {
+        id: Product.id + color,
+        name: Product.name,
+        color: color, //user selected color
+        amount: amount, //amount of product user wants to buy
+        image: Product.image[0].url,
+        price: Product.price,
+        max: Product.stock,
+      };
+      return { ...state, cart: [...state.cart, cartProduct] };
+
+      case "REMOVE_PRODUCT_FROM_CART":
+        const updatedCart = state.cart.filter(element => element.id !== action.payload);
+        return {...state, cart: updatedCart};
+
+    default:
+      return state;
+  }
+};
 
 export default CartReducer;

@@ -45,13 +45,13 @@ const AddToCart = ({ product }) => {
         </p>
       </div>
 
-      {/* add to cart  */}
+      {/* Amount  */}
       <CartAmountToggle
         amount={amount}
         setDecrease={setDecrease}
         setIncrease={setIncrease}
       />
-
+      {/* Add to cart */}
       <NavLink to="/cart" onClick={() => addToCart(color, amount, Product)}>
         {/* here color =userselected color, amount= userselected amount/quantity of product he wants to buy, 
         Product=singleProduct data we fetched in SingleProduct page */}
