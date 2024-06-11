@@ -3,6 +3,7 @@
 import React, { useReducer } from "react";
 import { createContext, useContext } from "react";
 import reducer from "../reducers/CartReducer";
+import { useEffect } from "react";
 
 export const CartContext = createContext();
 
@@ -27,6 +28,20 @@ export const CartContextProvider = ({ children }) => {
   const RemoveCartProduct = (id)=>{
      return dispatch({type:"REMOVE_PRODUCT_FROM_CART", payload:id})
   }
+
+  //Initial update
+  useEffect(()=>{
+  let localStorageProducts = JSON.parse(localStorage.getItem('Products') || []);
+  dispatch({type:"LOAD_PRODUCTS_FROM_LOCAL_STORAGE_INTO_CART", payload:localStorageProducts })
+  },[])
+
+  //Adding Products in local storage
+ useEffect(()=>{
+  localStorage.setItem("Products", JSON.stringify(state.cart))
+ },[state.cart])
+
+
+
 
   return (
     <CartContext.Provider value={{ ...state, addToCart, RemoveCartProduct }}>
