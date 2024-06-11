@@ -29,13 +29,13 @@ export const CartContextProvider = ({ children }) => {
      return dispatch({type:"REMOVE_PRODUCT_FROM_CART", payload:id})
   }
 
-  //Initial update
+  //Initially adding products from local storage to our store.
   useEffect(()=>{
   let localStorageProducts = JSON.parse(localStorage.getItem('Products') || []);
   dispatch({type:"LOAD_PRODUCTS_FROM_LOCAL_STORAGE_INTO_CART", payload:localStorageProducts })
   },[])
 
-  //Adding Products in local storage
+  //Adding Products from our store to local storage (whenver new product is added or deleted)
  useEffect(()=>{
   localStorage.setItem("Products", JSON.stringify(state.cart))
  },[state.cart])

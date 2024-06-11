@@ -1,6 +1,6 @@
 const CartReducer = (state, action) => {
   switch (action.type) {
-    //initially adding products from locat storage to our store.
+    //Initially adding products from local storage to our store.
     case "LOAD_PRODUCTS_FROM_LOCAL_STORAGE_INTO_CART" :
       return {...state, cart:action.payload}  
 
