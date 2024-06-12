@@ -5,6 +5,13 @@ import CartItem from "../components/CartItem";
 const Cart = () => {
   const { cart } = useCartContext();
 
+  if (cart.length === 0) {
+    return (
+      <Wrapper>
+        <div className="no-products">No products in cart</div>
+      </Wrapper>
+    );
+  }
   return (
     <Wrapper>
       <div className="container">
@@ -29,6 +36,16 @@ const Cart = () => {
 
 const Wrapper = styled.section`
   padding: 9rem 0;
+
+  .no-products {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  color: #555;
+  font-size: 2rem;
+  font-family: Arial, sans-serif;
+}
 
   .grid-four-column {
     grid-template-columns: repeat(4, 1fr);
@@ -199,6 +216,8 @@ const Wrapper = styled.section`
         padding: 3.2rem;
       }
     }
+
+ 
   }
 `;
 
