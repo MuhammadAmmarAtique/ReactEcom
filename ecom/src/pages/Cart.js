@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { useCartContext } from "../context/CartContext";
 import CartItem from "../components/CartItem";
+import {NavLink} from "react-router-dom"
+import {Button} from "../styles/Button"
 
 const Cart = () => {
-  const { cart } = useCartContext();
+  const { cart, ClearAllProductsFromCart } = useCartContext();
 
   if (cart.length === 0) {
     return (
@@ -29,7 +31,17 @@ const Cart = () => {
             return <CartItem key={curElem.id} {...curElem} />;
           })}
         </div>
+          {/*Continue shopping and Clear cart Buttons  */}
+        <div className="cart-two-button">
+          <NavLink to="/products">
+            <Button> continue Shopping </Button>
+          </NavLink>
+          <Button className="btn btn-clear" onClick={()=> ClearAllProductsFromCart()} >
+            clear cart
+          </Button>
+        </div>
       </div>
+ 
     </Wrapper>
   );
 };

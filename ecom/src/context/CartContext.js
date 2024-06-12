@@ -40,11 +40,14 @@ export const CartContextProvider = ({ children }) => {
   localStorage.setItem("Products", JSON.stringify(state.cart))
  },[state.cart])
 
-
+ //Clearing All Products From Cart when user click on clear cart button
+ const ClearAllProductsFromCart=()=>{
+  dispatch({type:"DELETE_ALL_PRODUCTS_FROM_CART"})
+ }
 
 
   return (
-    <CartContext.Provider value={{ ...state, addToCart, RemoveCartProduct }}>
+    <CartContext.Provider value={{ ...state, addToCart, RemoveCartProduct, ClearAllProductsFromCart }}>
       {children}
     </CartContext.Provider>
   );
