@@ -79,7 +79,7 @@ const HeroSection = ({ heading, text }) => {
             <p>
             {text}
             </p>
-            <NavLink>
+            <NavLink to={"/products"}>
               <Button>show now</Button>
             </NavLink>
           </div>
