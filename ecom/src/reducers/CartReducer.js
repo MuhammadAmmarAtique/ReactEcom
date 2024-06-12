@@ -11,7 +11,7 @@ const CartReducer = (state, action) => {
       let cartProduct;
 
       cartProduct = {
-        id: Product.id + color,
+        id: Product.id + Math.random(),
         name: Product.name,
         color: color, //user selected color
         amount: amount, //amount of product user wants to buy
