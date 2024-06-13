@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export const CartContext = createContext();
 
 const initialState = {
-  cart: [],
+  cart: [], //cart products will be stored in form of array of objects
   totalItem: "",
   totalAmount: "",
   shippingFees: 5000,
@@ -21,33 +21,55 @@ export const CartContextProvider = ({ children }) => {
   const addToCart = (color, amount, Product) => {
     return dispatch({
       type: "ADD_PRODUCT_IN_CART",
-      payload: {color, amount, Product },
+      payload: { color, amount, Product },
     });
   };
 
-  const RemoveCartProduct = (id)=>{
-     return dispatch({type:"REMOVE_PRODUCT_FROM_CART", payload:id})
-  }
+  const RemoveCartProduct = (id) => {
+    return dispatch({ type: "REMOVE_PRODUCT_FROM_CART", payload: id });
+  };
 
   //Initially adding products from local storage to our store.
-  useEffect(()=>{
-  let localStorageProducts = JSON.parse(localStorage.getItem('Products') || []);
-  dispatch({type:"LOAD_PRODUCTS_FROM_LOCAL_STORAGE_INTO_CART", payload:localStorageProducts })
-  },[])
+  useEffect(() => {
+    let localStorageProducts = JSON.parse(
+      localStorage.getItem("Products") || "[]"
+    );
+    dispatch({
+      type: "LOAD_PRODUCTS_FROM_LOCAL_STORAGE_INTO_CART",
+      payload: localStorageProducts,
+    });
+  }, []);
 
   //Adding Products from our store to local storage (whenver new product is added or deleted)
- useEffect(()=>{
-  localStorage.setItem("Products", JSON.stringify(state.cart))
- },[state.cart])
+  useEffect(() => {
+    localStorage.setItem("Products", JSON.stringify(state.cart));
+  }, [state.cart]);
 
- //Clearing All Products From Cart when user click on clear cart button
- const ClearAllProductsFromCart=()=>{
-  dispatch({type:"DELETE_ALL_PRODUCTS_FROM_CART"})
- }
+  //Clearing All Products From Cart when user click on clear cart button
+  const ClearAllProductsFromCart = () => {
+    dispatch({ type: "DELETE_ALL_PRODUCTS_FROM_CART" });
+  };
 
+  // Increasing and decreasing Product Quantity inside cart page
+  const setDecrease = (id) => {
+    dispatch({ type: "DECREMENT_PRODUCT_QUANTITY", payload: id });
+  };
+
+  const setIncrease = (id) => {
+    dispatch({ type: "INCREMENT_PRODUCT_QUANTITY", payload: id });
+  };
 
   return (
-    <CartContext.Provider value={{ ...state, addToCart, RemoveCartProduct, ClearAllProductsFromCart }}>
+    <CartContext.Provider
+      value={{
+        ...state,
+        addToCart,
+        RemoveCartProduct,
+        ClearAllProductsFromCart,
+        setDecrease,
+        setIncrease,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
