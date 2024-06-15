@@ -10,15 +10,27 @@ const CartReducer = (state, action) => {
       let cartProduct;
 
       cartProduct = {
-        id: Product.id + Math.random(),
+        id: Product.id,
         name: Product.name,
         color: color, //user selected color
         amount: amount, //amount of product user wants to buy
         image: Product.image[0].url,
         price: Product.price,
-        max: Product.stock,
+        max: Product.stock, //product stock
       };
-      return { ...state, cart: [...state.cart, cartProduct] };
+
+      if (state.cart.length === 0) {
+        return { ...state, cart: [...state.cart, cartProduct] };
+      }
+      //if user is adding same product in cart then increasing product's quantity in cart page
+      state.cart.forEach((product) => {
+        if (product.id === cartProduct.id) {
+          product.amount = Math.min(product.max, product.amount + 1); //quantity cannot increase more then stock
+          return { ...state, cart: [...state.cart, product] };
+        } else {
+          return { ...state, cart: [...state.cart, cartProduct] };
+        }
+      });
 
     case "REMOVE_PRODUCT_FROM_CART":
       const updatedCart = state.cart.filter(
@@ -32,17 +44,21 @@ const CartReducer = (state, action) => {
     case "DECREMENT_PRODUCT_QUANTITY":
       return {
         ...state,
-        cart: state.cart.map(product => product.id === action.payload
-           ? { ...product, amount: Math.max(1, product.amount - 1) }: product
-        )
+        cart: state.cart.map((product) =>
+          product.id === action.payload
+            ? { ...product, amount: Math.max(1, product.amount - 1) }
+            : product
+        ),
       };
 
     case "INCREMENT_PRODUCT_QUANTITY":
       return {
         ...state,
-        cart: state.cart.map(product => product.id === action.payload
-           ? { ...product, amount: Math.min(product.max, product.amount + 1) }: product
-        )
+        cart: state.cart.map((product) =>
+          product.id === action.payload
+            ? { ...product, amount: Math.min(product.max, product.amount + 1) }
+            : product
+        ),
       };
 
     default:
