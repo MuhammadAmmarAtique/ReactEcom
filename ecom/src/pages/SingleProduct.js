@@ -35,7 +35,8 @@ function SingleProduct() {
     category,
     image,
     stars,
-    reviews
+    reviews,
+    company
   } = SingleProduct.data; //destructuring singleproduct object
 
   return (
@@ -86,15 +87,15 @@ function SingleProduct() {
 
             <div className="product-data-info">
               <p>
-                ID : <span> {alias} </span>
-              </p>
-              <p>
-                Rating:
-                <span> {stars}</span>
+                Comnpany : <span> {company} </span>
               </p>
               <p>
                 Category :<span> {category} </span>
               </p>
+              <p>
+                Rating:
+                <span> {stars}</span>
+              </p>            
             </div>
             <hr />
             <AddToCart product={SingleProduct}/>
