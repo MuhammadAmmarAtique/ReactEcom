@@ -10,7 +10,7 @@ const CartReducer = (state, action) => {
       let cartProduct;
 
       cartProduct = {
-        id: Product.id,
+        id: Product.id + color,
         name: Product.name,
         color: color, //user selected color
         amount: amount, //amount of product user wants to buy
@@ -40,8 +40,10 @@ const CartReducer = (state, action) => {
       }
 
     case "REMOVE_PRODUCT_FROM_CART":
+      const {Productid, Productcolor} = action.payload;
+      
       const updatedCart = state.cart.filter(
-        (element) => element.id !== action.payload
+        (element) => element.id !== Productid && element.color !== Productcolor
       );
       return { ...state, cart: updatedCart };
 

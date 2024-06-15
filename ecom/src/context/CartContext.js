@@ -25,8 +25,8 @@ export const CartContextProvider = ({ children }) => {
     });
   };
 
-  const RemoveCartProduct = (id) => {
-    return dispatch({ type: "REMOVE_PRODUCT_FROM_CART", payload: id });
+  const RemoveCartProduct = (Productid, Productcolor) => {
+    return dispatch({ type: "REMOVE_PRODUCT_FROM_CART", payload: {Productid, Productcolor} });
   };
 
   //Initially adding products from local storage to our store.
