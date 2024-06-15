@@ -19,18 +19,25 @@ const CartReducer = (state, action) => {
         max: Product.stock, //product stock
       };
 
-      if (state.cart.length === 0) {
+       //if user is adding same product with same color in cart then increasing product's quantity in cart page
+      const existingProduct = state.cart.find(
+        (product) => product.id === cartProduct.id && product.color === cartProduct.color
+      );
+    
+      if (existingProduct) {
+        // If product exists in the cart, update the amount
+        return {
+          ...state,
+          cart: state.cart.map((product) =>
+            product.id === cartProduct.id && product.color === cartProduct.color
+              ? { ...product, amount: Math.min(product.max, product.amount + amount) } // Update amount, respecting the max stock
+              : product
+          ),
+        };
+      } else {
+        // If product does not exist in the cart, add it to the cart
         return { ...state, cart: [...state.cart, cartProduct] };
       }
-      //if user is adding same product in cart then increasing product's quantity in cart page
-      state.cart.forEach((product) => {
-        if (product.id === cartProduct.id) {
-          product.amount = Math.min(product.max, product.amount + 1); //quantity cannot increase more then stock
-          return { ...state, cart: [...state.cart, product] };
-        } else {
-          return { ...state, cart: [...state.cart, cartProduct] };
-        }
-      });
 
     case "REMOVE_PRODUCT_FROM_CART":
       const updatedCart = state.cart.filter(
