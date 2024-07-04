@@ -10,8 +10,8 @@ export const CartContext = createContext();
 const initialState = {
   cart: [], //cart products will be stored in form of array of objects
   totalItems: "", //it will show total items inside navbar cart icon
-  totalPrice: "",
-  shippingFees: 5000,
+  totalPrice: "", //it will used to show totalprice of all the products in Cart page
+  shippingFees: 500,
 };
 
 export const CartContextProvider = ({ children }) => {
@@ -45,6 +45,8 @@ export const CartContextProvider = ({ children }) => {
     localStorage.setItem("Products", JSON.stringify(state.cart));
     //updating totalcart items
     dispatch({type: "UpdateTotalItems"})
+     //updating totalPrice 
+     dispatch({type: "UpdateTotalPrice"})
   }, [state.cart]);
 
   //Clearing All Products From Cart when user click on clear cart button

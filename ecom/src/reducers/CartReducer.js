@@ -79,6 +79,15 @@ const CartReducer = (state, action) => {
         },0)
       };
 
+      case "UpdateTotalPrice":
+        return {
+          ...state,
+          totalPrice: state.cart.reduce((accum, product)=>{
+            accum += product.price * product.amount
+            return accum
+          },0)
+        };
+
     default:
       return state;
   }
