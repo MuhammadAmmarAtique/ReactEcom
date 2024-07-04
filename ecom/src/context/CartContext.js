@@ -9,14 +9,14 @@ export const CartContext = createContext();
 
 const initialState = {
   cart: [], //cart products will be stored in form of array of objects
-  totalItem: "",
-  totalAmount: "",
+  totalItems: "", //it will show total items inside navbar cart icon
+  totalPrice: "",
   shippingFees: 5000,
 };
 
 export const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  // console.log("state: ", state);
+  console.log("state: ", state);
 
   const addToCart = (color, amount, Product) => {
     return dispatch({
@@ -43,6 +43,8 @@ export const CartContextProvider = ({ children }) => {
   //Adding Products from our store to local storage (whenver new product is added or deleted)
   useEffect(() => {
     localStorage.setItem("Products", JSON.stringify(state.cart));
+    //updating totalcart items
+    dispatch({type: "UpdateTotalItems"})
   }, [state.cart]);
 
   //Clearing All Products From Cart when user click on clear cart button

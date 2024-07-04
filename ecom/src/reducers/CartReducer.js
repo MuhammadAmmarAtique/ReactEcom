@@ -70,6 +70,15 @@ const CartReducer = (state, action) => {
         ),
       };
 
+      case "UpdateTotalItems":
+      return {
+        ...state,
+        totalItems: state.cart.reduce((accum, product)=>{
+          accum += product.amount
+          return accum
+        },0)
+      };
+
     default:
       return state;
   }

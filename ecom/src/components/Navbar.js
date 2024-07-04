@@ -162,12 +162,7 @@ const Nav = styled.nav`
 const Navbar = () => {
   const [menuIcon, setMenuIcon] = useState();
 
-  const { cart } = useCartContext();
-  let totalCartProducts = 0;
-  cart.map((product)=>{
-    totalCartProducts += product.amount;
-  })
-  
+  const { totalItems } = useCartContext();
   return (
     <Nav>
       <div className={menuIcon ? "navbar active" : "navbar"}>
@@ -211,7 +206,7 @@ const Navbar = () => {
           <li>
             <NavLink to="/cart" className="navbar-link cart-trolley--link">
               <FiShoppingCart className="cart-trolley" />
-              <span className="cart-total--item"> {totalCartProducts} </span>
+              <span className="cart-total--item"> {totalItems} </span>
             </NavLink>
           </li>
         </ul>
