@@ -20,7 +20,7 @@ function SingleProduct() {
 
   useEffect(() => {
     getSingleProductData(`https://api.pujakaitem.com/api/products/${id}`);
-}, [id, getSingleProductData]);
+}, [id]);
 
   // Check if the data is still loading or if it's not yet available
   if (isSingleProductLoading || !SingleProduct.data) {
