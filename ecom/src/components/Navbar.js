@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
 import { useCartContext } from "../context/CartContext";
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
+import {Button} from "../styles/Button"
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Nav = styled.nav`
@@ -167,7 +166,7 @@ const Navbar = () => {
   const { totalItems } = useCartContext();
 
   //Using isAuthenticated Method from useAuth0 hook to check whether user is authenticated or not.
-  const { isAuthenticated } = useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   return (
     <Nav>
       <div className={menuIcon ? "navbar active" : "navbar"}>
@@ -208,13 +207,20 @@ const Navbar = () => {
               Contact
             </NavLink>
           </li>
+      
+          {isAuthenticated && <p>{user.name}</p>}
+
           {isAuthenticated ? (
             <li>
-               <LogoutButton />
+              <Button
+                onClick={() => logout({ returnTo: window.location.origin })}
+              >
+                Log Out
+              </Button>
             </li>
           ) : (
             <li>
-              <LoginButton />
+              <Button onClick={() => loginWithRedirect()}>Log In</Button>
             </li>
           )}
 
