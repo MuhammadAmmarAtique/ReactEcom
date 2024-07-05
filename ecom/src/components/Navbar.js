@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
 import { useCartContext } from "../context/CartContext";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Nav = styled.nav`
   .navbar-lists {
@@ -161,8 +164,10 @@ const Nav = styled.nav`
 
 const Navbar = () => {
   const [menuIcon, setMenuIcon] = useState();
-
   const { totalItems } = useCartContext();
+
+  //Using isAuthenticated Method from useAuth0 hook to check whether user is authenticated or not.
+  const { isAuthenticated } = useAuth0();
   return (
     <Nav>
       <div className={menuIcon ? "navbar active" : "navbar"}>
@@ -203,6 +208,16 @@ const Navbar = () => {
               Contact
             </NavLink>
           </li>
+          {isAuthenticated ? (
+            <li>
+               <LogoutButton />
+            </li>
+          ) : (
+            <li>
+              <LoginButton />
+            </li>
+          )}
+
           <li>
             <NavLink to="/cart" className="navbar-link cart-trolley--link">
               <FiShoppingCart className="cart-trolley" />
@@ -211,7 +226,7 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* two button for open and close of menu */}
+        {/* Two buttons for openning and closing of navbar (responsive) */}
         <div className="mobile-navbar-btn">
           <CgMenu
             name="menu-outline"
