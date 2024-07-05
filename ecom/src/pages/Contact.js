@@ -44,6 +44,7 @@ const Contact = () => {
         style={{ border: 0 }} //iniside curly brackets we pass styling as an object in form of key value pair
         allowFullScreen=""
         loading="lazy"
+        title="Google maps showing Location"
         referrerPolicy="no-referrer-when-downgrade" //in react we write props/attribute in form of camel casing
       ></iframe>
 

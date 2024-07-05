@@ -1,10 +1,10 @@
-import {React, useState} from "react";
+import {React} from "react";
 import FormatPrice from "../helpers/FormatPrice";
 import CartAmountToggle from "./CartAmountToggle";
 import { FaTrash } from "react-icons/fa";
 import { useCartContext } from "../context/CartContext";
 
-const CartItem = ({ id, name, image, color, price, amount, max }) => {
+const CartItem = ({ id, name, image, color, price, amount}) => {
   const { RemoveCartProduct, setDecrease, setIncrease  } = useCartContext();
   return (
     <div className="cart_heading grid grid-five-column">

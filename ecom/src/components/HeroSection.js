@@ -88,7 +88,7 @@ const HeroSection = ({ heading, text }) => {
             <figure>
               <img
                 src="images/hero.jpg"
-                alt="hero-section-photo"
+                alt="HeroSection"
                 className="img-style"
               />
             </figure>

@@ -20,7 +20,7 @@ function SingleProduct() {
 
   useEffect(() => {
     getSingleProductData(`https://api.pujakaitem.com/api/products/${id}`);
-}, [id]);
+}, [id, getSingleProductData]);
 
   // Check if the data is still loading or if it's not yet available
   if (isSingleProductLoading || !SingleProduct.data) {
@@ -28,7 +28,6 @@ function SingleProduct() {
   }
 
   const {
-    id: alias, // renaming product id as alias.
     name,
     price,
     description,
