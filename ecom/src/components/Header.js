@@ -14,6 +14,13 @@ const MainHeader = styled.header`
   .logo {
     height: 5rem;
   }
+
+  @media (max-width: 450px) {
+    .logo {
+      height: 4rem;
+    }
+    padding: 0 1.5rem;
+  }
 `;
 
 function Header() {
