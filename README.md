@@ -1,6 +1,6 @@
 # React E-commerce App
 
-🚀 Excited to share my latest project - An **E-commerce App** built with **React**! 🎉
+🚀 An **E-commerce App** built with **React**! 🎉
 
 This project integrates some powerful libraries and tools to create a seamless and efficient shopping experience.
 
@@ -58,7 +58,7 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## Contact
 
-Muhammad Ammar Atique - [LinkedIn](https://www.linkedin.com/in/muhammad-ammar-atique/) - [Twitter](https://twitter.com/MuhammadAmmarAtique)
+Muhammad Ammar Atique - [LinkedIn](https://www.linkedin.com/in/muhammad-ammar-atique-0b409223a/) - [Twitter](https://x.com/AmmarAtiqu)
 
 Project Link: [https://github.com/MuhammadAmmarAtique/ReactEcom](https://github.com/MuhammadAmmarAtique/ReactEcom)
 
