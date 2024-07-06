@@ -6,7 +6,10 @@ This project integrates some powerful libraries and tools to create a seamless a
 
 ## Preview
 
-![ReactEcom Preview](Projectimages/screenshot.png)
+![ReactEcom Preview 1](Projectimages/screenshot1.png)
+![ReactEcom Preview 2](Projectimages/screenshot2.png)
+![ReactEcom Preview 3](Projectimages/screenshot3.png)
+![ReactEcom Preview 3](Projectimages/screenshot4.png)
 
 ## Features
 
