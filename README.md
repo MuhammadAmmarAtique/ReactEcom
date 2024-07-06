@@ -4,6 +4,10 @@
 
 This project integrates some powerful libraries and tools to create a seamless and efficient shopping experience.
 
+## Preview
+
+![ReactEcom Preview](Projectimages/screenshot.png)
+
 ## Features
 
 - **React Router DOM** for seamless routing
@@ -33,7 +37,7 @@ Check out the live version of the app here:
     ```bash
     npm install
     ```
-3. Create a `.env` file in the root directory and add your environment variables.
+3. Create a `.env` file in the root directory and add your environment variables. (Auth0)
 4. Run the app
     ```bash
     npm start
@@ -60,7 +64,6 @@ Contributions are what make the open-source community such an amazing place to l
 
 Muhammad Ammar Atique - [LinkedIn](https://www.linkedin.com/in/muhammad-ammar-atique-0b409223a/) - [Twitter](https://x.com/AmmarAtiqu)
 
-Project Link: [https://github.com/MuhammadAmmarAtique/ReactEcom](https://github.com/MuhammadAmmarAtique/ReactEcom)
 
 ## Acknowledgments
 
